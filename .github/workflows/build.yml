@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+      # CI has no keystore, so this produces app-release-unsigned.apk;
+      # release APKs are signed locally with apksigner.
+      - run: ./gradlew assembleRelease
+      - uses: actions/upload-artifact@v4
+        with:
+          name: app-release-unsigned
+          path: app/build/outputs/apk/release/*.apk
+          if-no-files-found: error

@@ -1,7 +1,6 @@
 package com.questterm.ui.components
 
 import android.content.Intent
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,7 +21,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -33,7 +31,6 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.ui.text.font.FontFamily
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.questterm.R
 import com.questterm.data.AuthMethod
 import com.questterm.data.ConnectionProfile
 import com.questterm.ui.screens.HostKeyPrompt
@@ -258,27 +255,20 @@ fun QuickConnectDialog(
             }
             }
 
-            // Branding
+            // Attribution: the MIT license requires keeping the upstream copyright notice
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.logo_company),
-                    contentDescription = "Rabbit Hole Solutions",
-                    modifier = Modifier.size(36.dp),
-                    alpha = 0.5f,
-                )
-                Spacer(modifier = Modifier.width(8.dp))
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
-                        text = "\u00a9 2026 Rabbit Hole Solutions Inc.",
+                        text = "Portions \u00a9 2026 Rabbit Hole Solutions Inc. \u00b7 MIT License",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
                     )
                     Text(
-                        text = "github.com/rabbitHoleSolutions/highmark-ssh",
+                        text = "github.com/leonsilicon/highmark-ssh",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f),
                     )
@@ -399,7 +389,7 @@ private fun GeneratedKeyPanel(
                         // installed apps accept text.
                         val send = Intent(Intent.ACTION_SEND).apply {
                             type = "text/plain"
-                            putExtra(Intent.EXTRA_SUBJECT, "Highmark SSH public key")
+                            putExtra(Intent.EXTRA_SUBJECT, "Visor SSH public key")
                             putExtra(Intent.EXTRA_TEXT, it)
                         }
                         context.startActivity(Intent.createChooser(send, "Share public key"))

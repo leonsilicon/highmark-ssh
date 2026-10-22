@@ -20,7 +20,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.questterm"
+        applicationId = "com.leonsilicon.visorssh"
         minSdk = 29
         targetSdk = 34
         versionCode = 4

@@ -189,7 +189,7 @@ class QuickConnectViewModel @Inject constructor(
 
     private fun formatPublicKey(keyPair: KeyPair): String? {
         val state = _uiState.value
-        val comment = state.username.ifBlank { "quest" } + "@" + state.host.ifBlank { "highmark-ssh" }
+        val comment = state.username.ifBlank { "quest" } + "@" + state.host.ifBlank { "visor-ssh" }
         return SshKeyPairs.formatOpenSsh(keyPair.public as Ed25519PublicKey, comment)
     }
 
